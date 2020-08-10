@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebApplication1.Models.Entidades.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Novo cadastro</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Idade)
+                </td>
+                <td>
+                    @if (item.Tipo == 1)
+                    {
+                        <label>Administrador</label>
+                    }
+                    else
+                 if (item.Tipo == 2)
+                    {
+                        <label>Técnico</label>
+                    }
+                    else
+                 if (item.Tipo == 3)
+                    {
+                        <label>Usuário Normal</label>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.Id /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Detalhes, "Detalhes", new { id = item.Id /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Deletar", "Deletar", new { id = item.Id /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
